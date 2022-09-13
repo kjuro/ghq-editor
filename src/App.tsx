@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { render } from 'react-dom';
+import { GraphQLEditor, PassedSchema } from 'graphql-editor';
 
-function App() {
+const schemas = {
+  pizza: `
+type Query{
+	pizzas: [Pizza!]
+}
+`,
+  pizzaLibrary: `
+type Pizza{
+  name:String;
+}
+`,
+};
+
+export const App = () => {
+  const [mySchema, setMySchema] = useState<PassedSchema>({
+    code: schemas.pizza,
+    libraries: schemas.pizzaLibrary,
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        alignSelf: 'stretch',
+        display: 'flex',
+        position: 'relative',
+      }}
+    >
+      <GraphQLEditor
+        schema={mySchema} 
+        setSchema={function (props: PassedSchema, isInvalid?: boolean | undefined): void {
+          setMySchema(props); 
+        } }      
+      />
     </div>
   );
-}
+};
 
-export default App;
+//         onSchemaChange={(props: React.SetStateAction<PassedSchema>) => { setMySchema(props); }}
+
+render(<App />, document.getElementById('root'));
+
+export default App
