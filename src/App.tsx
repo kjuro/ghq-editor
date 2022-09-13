@@ -1,24 +1,12 @@
-import React, { useState } from 'react';
-import { render } from 'react-dom';
+import { useState } from 'react';
+import { createRoot } from 'react-dom/client';
 import { GraphQLEditor, PassedSchema } from 'graphql-editor';
-
-const schemas = {
-  pizza: `
-type Query{
-	pizzas: [Pizza!]
-}
-`,
-  pizzaLibrary: `
-type Pizza{
-  name:String;
-}
-`,
-};
+import {pizza, pizzaLibrary} from "./schema"
 
 export const App = () => {
   const [mySchema, setMySchema] = useState<PassedSchema>({
-    code: schemas.pizza,
-    libraries: schemas.pizzaLibrary,
+    code: pizza,
+    libraries: pizzaLibrary,
   });
   return (
     <div
@@ -41,8 +29,8 @@ export const App = () => {
   );
 };
 
-//         onSchemaChange={(props: React.SetStateAction<PassedSchema>) => { setMySchema(props); }}
-
-render(<App />, document.getElementById('root'));
+const container = document.getElementById('root') as Element;
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(<App />);
 
 export default App

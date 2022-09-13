@@ -1,19 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { GraphQLEditor, PassedSchema } from 'graphql-editor';
+import {pizza, pizzaLibrary} from "./schema"
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+export const App = () => {
+  const [mySchema, setMySchema] = useState<PassedSchema>({
+    code: pizza,
+    libraries: pizzaLibrary,
+  });
+  return (
+    <div
+      style={{
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        alignSelf: 'stretch',
+        display: 'flex',
+        position: 'relative',
+      }}
+    >
+      <GraphQLEditor
+        schema={mySchema} 
+        setSchema={function (props: PassedSchema, isInvalid?: boolean | undefined): void {
+          setMySchema(props); 
+        } }      
+      />
+    </div>
+  );
+};
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const container = document.getElementById('root') as Element;
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(<App />);
