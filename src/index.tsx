@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { GraphQLEditor, PassedSchema } from 'graphql-editor';
 import {pizza, pizzaLibrary} from "./schema"
+import './index.css';
+
 
 export const App = () => {
   const [mySchema, setMySchema] = useState<PassedSchema>({
@@ -10,6 +12,7 @@ export const App = () => {
   });
   return (
     <div
+      className={`ghqE`}
       style={{
         flex: 1,
         width: '100%',
