@@ -11,23 +11,28 @@ export const App = () => {
     libraries: pizzaLibrary,
   });
   return (
-    <div
-      className={`ghqE`}
-      style={{
-        flex: 1,
-        width: '100%',
-        height: '100%',
-        alignSelf: 'stretch',
-        display: 'flex',
-        position: 'relative',
-      }}
-    >
-      <GraphQLEditor
-        schema={mySchema} 
-        setSchema={function (props: PassedSchema, isInvalid?: boolean | undefined): void {
-          setMySchema(props); 
-        } }      
-      />
+    <div id='page'>
+      <div id='header'>
+        GraphQL Editor
+      </div>
+      <div
+        className={`ghqE`}
+        style={{
+          flex: 1,
+          width: '100%',
+          height: '100%',
+          alignSelf: 'stretch',
+          display: 'flex',
+          position: 'relative',
+        }}
+      >
+        <GraphQLEditor
+          schema={mySchema} 
+          setSchema={function (props: PassedSchema, isInvalid?: boolean | undefined): void {
+            setMySchema(props); 
+          } }      
+        />
+      </div>
     </div>
   );
 };
