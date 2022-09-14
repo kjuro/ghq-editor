@@ -4,6 +4,12 @@ import { GraphQLEditor, PassedSchema } from 'graphql-editor';
 import {pizza, pizzaLibrary} from "./schema"
 import './index.css';
 
+const saveFile = async () => {
+  const dirHandle = await window.showDirectoryPicker();
+  for await (const entry of dirHandle.values()) {
+    console.log(entry.kind, entry.name);
+  }
+};
 
 export const App = () => {
   const [mySchema, setMySchema] = useState<PassedSchema>({
@@ -14,9 +20,9 @@ export const App = () => {
     <div id='page'>
       <div id='header'>
         GraphQL Editor
+        <button className='save' onClick={() => saveFile()}> Save </button>
       </div>
       <div
-        className={`ghqE`}
         style={{
           flex: 1,
           width: '100%',

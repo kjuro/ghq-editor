@@ -11,6 +11,7 @@
     "@types/node": "^16.11.58",
     "@types/react": "^18.0.19",
     "@types/react-dom": "^18.0.6",
+    "@types/wicg-file-system-access": "^2020.9.5",
     "graphql-editor": "^5.6.5",
     "monaco-editor": "^0.34.0",
     "react": "^18.2.0",
