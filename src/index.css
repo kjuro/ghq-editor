@@ -26,6 +26,6 @@ body {
   color: #b7c7cc;
 }
 
-button.save {
+.float-right {
   float: right;
 }
