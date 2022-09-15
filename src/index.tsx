@@ -83,6 +83,7 @@ export const App = () => {
           alignSelf: 'stretch',
           display: 'flex',
           position: 'relative',
+          overflow: 'auto'
         }}
       >
         <GraphQLEditor

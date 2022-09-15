@@ -13,6 +13,13 @@ body {
   font-family: 'Fira Sans','Monaco','Menlo','Ubuntu Mono','Consolas','source-code-pro',monospace;
 }
 
+#page {
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+}
+
 #header {
   background: rgb(26, 26, 26) none repeat scroll 0% 0%;
   width: 100%;
