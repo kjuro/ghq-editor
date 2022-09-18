@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is my first React application.
 
-It is simple application to use [GraphQLEditor component](https://github.com/graphql-editor/graphql-editor) and open / save schema using [File System Access API](https://wicg.github.io/file-system-access/). It works in Chromium browsers like Chrome or Edge. 
+It is simple application to use [GraphQLEditor component](https://github.com/graphql-editor/graphql-editor) and open / save schema using [File System Access API](https://wicg.github.io/file-system-access/). It works in Chromium browsers like Chrome or Edge. You may check it at [ge.jk.sk](https://ge.jk.sk/)
 
 ## Available Scripts
 
