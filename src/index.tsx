@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { GraphQLEditor, PassedSchema } from 'graphql-editor';
-import {pizza, pizzaLibrary} from "./schema"
+//import {pizza, pizzaLibrary} from "./schema"
 import './index.css';
 
 export const App = () => {
   const [mySchema, setMySchema] = useState<PassedSchema>({
-    code: pizza,
-    libraries: pizzaLibrary,
+    code: ""
   });
 
   let fileHandle: FileSystemFileHandle | null = null;
@@ -17,11 +16,11 @@ export const App = () => {
     const file = await fileHandle.getFile();
     const contents = await file.text();
     //console.log(contents)
-    mySchema.code =  contents;
-    setMySchema(mySchema)
+    setMySchema({code: contents});
   }
 
   const saveFile = async () => {
+    console.log(fileHandle)
     if (fileHandle) {
       writeToFile(fileHandle, mySchema.code)
     }
@@ -29,8 +28,7 @@ export const App = () => {
 
   const newFile = async () => {
     fileHandle = null
-    mySchema.code =  "";
-    setMySchema(mySchema);
+    setMySchema({code: "", libraries: ""});
   };
 
   async function saveFileAs() {
@@ -80,7 +78,7 @@ export const App = () => {
         <div className='float-right'>
           <button className='new' onClick={() => newFile()}> New </button>
           <button className='open' onClick={() => openFile()}> Open </button>
-          <button className='save' onClick={() => saveFile()}> Save</button>
+          { /* <button className='save' onClick={() => saveFile()}> Save</button> */ }
           <button className='save-as' onClick={() => saveFileAs()}> Save as</button>
         </div>
       </div>
