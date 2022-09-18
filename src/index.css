@@ -33,6 +33,10 @@ body {
   color: #b7c7cc;
 }
 
+#header button {
+  margin-left: 5px;
+}
+
 .float-right {
   float: right;
 }
