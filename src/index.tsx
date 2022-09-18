@@ -10,7 +10,7 @@ export const App = () => {
     libraries: pizzaLibrary,
   });
 
-  let fileHandle: FileSystemFileHandle;
+  let fileHandle: FileSystemFileHandle | null = null;
 
   const openFile = async () => {
     [fileHandle] = await window.showOpenFilePicker();
@@ -22,7 +22,15 @@ export const App = () => {
   }
 
   const saveFile = async () => {
-    writeToFile(fileHandle, mySchema.code)
+    if (fileHandle) {
+      writeToFile(fileHandle, mySchema.code)
+    }
+  };
+
+  const newFile = async () => {
+    fileHandle = null
+    mySchema.code =  "";
+    setMySchema(mySchema);
   };
 
   async function saveFileAs() {
@@ -70,6 +78,7 @@ export const App = () => {
       <div id='header'>
         GraphQL Editor
         <div className='float-right'>
+          <button className='new' onClick={() => newFile()}> New </button>
           <button className='open' onClick={() => openFile()}> Open </button>
           <button className='save' onClick={() => saveFile()}> Save</button>
           <button className='save-as' onClick={() => saveFileAs()}> Save as</button>
