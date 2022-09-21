@@ -1,5 +1,6 @@
 import React from "react";
 import { GraphQLEditor, PassedSchema } from 'graphql-editor';
+import { library } from "./graphql/library"
 
 interface EditorState extends PassedSchema {
   fileHandle: FileSystemFileHandle | null
@@ -8,7 +9,7 @@ interface EditorState extends PassedSchema {
 export class MainPage extends React.Component<{}, EditorState> {
   state: EditorState = {
     code: "",
-    libraries: "",
+    libraries: library,
     fileHandle: null
   };
 
